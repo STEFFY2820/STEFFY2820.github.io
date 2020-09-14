@@ -1,1 +1,40 @@
-<h1>Hello teff! </h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.33/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.33/"></script>
+    <script>
+      var map;
+
+      require(["esri/map","esri/layers/ArcGISDynamicMapServiceLayer"], function(Map, ArcGISDynamicMapServiceLayer) 
+      {
+        map = new Map("map", {
+          basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+          center: [-75.015152, -9.189967], // longitude, latitude
+          zoom: 5
+        });
+        
+        var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("https://arcgis.inei.gob.pe:6443/arcgis/rest/services/servicios_prueba/pruebas_Servicio2/MapServer?token=OWqV5MfzU5149lUU_nqs_hCki31hpArcm3lxk4kKN6lf3aAg4M42Z0TPOgDJAn3n", {
+          "opacity" : 0.5
+        });
+        map.addLayer(dynamicMapServiceLayer);
+        });
+        
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+ 
